@@ -9,6 +9,108 @@
     />
     <title>Jiadian LI (李伽典)</title>
     <link rel="stylesheet" href="styles.css" />
+
+    <!--
+      Background-story popover overrides.
+      These styles intentionally live in this HTML file so you only need to replace index.html.
+    -->
+    <style>
+      .hero {
+        overflow: visible;
+      }
+
+      .background-story[hidden] {
+        display: none !important;
+      }
+
+      .background-story {
+        position: absolute;
+        z-index: 40;
+        right: max(24px, calc((100vw - 1120px) / 2));
+        bottom: 72px;
+        width: min(560px, calc(100% - 48px));
+        padding: 0;
+        background: transparent;
+        backdrop-filter: none;
+      }
+
+      .background-story::after {
+        position: absolute;
+        right: 28px;
+        bottom: -10px;
+        width: 18px;
+        height: 18px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+        content: "";
+        transform: rotate(45deg);
+      }
+
+      .background-story-panel {
+        position: relative;
+        width: 100%;
+        max-height: min(58vh, 500px);
+        overflow: auto;
+        padding: 28px 32px 30px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        box-shadow: 0 20px 55px rgb(15 10 7 / 30%);
+        animation: backgroundStoryPop 160ms cubic-bezier(0.2, 0.85, 0.35, 1) both;
+        transform-origin: bottom right;
+      }
+
+      .background-story-panel h2 {
+        margin: 0 44px 18px 0;
+        font-size: clamp(1.2rem, 2.4vw, 1.75rem);
+      }
+
+      .background-story-panel p {
+        margin: 0;
+        color: #53483e;
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+
+      .background-story-panel p + p {
+        margin-top: 0.9em;
+      }
+
+      .background-story-close {
+        top: 10px;
+        right: 12px;
+      }
+
+      @keyframes backgroundStoryPop {
+        from {
+          opacity: 0;
+          transform: translateY(18px) scale(0.985);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .background-story {
+          right: 16px;
+          bottom: 68px;
+          width: min(520px, calc(100% - 32px));
+        }
+
+        .background-story-panel {
+          max-height: min(62vh, 430px);
+          padding: 24px 22px 26px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .background-story-panel {
+          animation: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -31,25 +133,58 @@
           alt="Historical Chinese newspapers and documents displayed under warm museum lighting"
         />
         <div class="hero-shade" aria-hidden="true"></div>
-      </section>
 
-      <section class="identity wrap">
-        <h1>Jiadian LI <span lang="zh-Hans">(李伽典)</span></h1>
-        <div class="title-rule" aria-hidden="true">
-          <span></span>
+        <div class="hero-center-title" aria-hidden="true">
+          <span>Welcome</span>
+        </div>
+
+        <button
+          class="background-story-button"
+          id="background-story-button"
+          type="button"
+          aria-controls="background-story"
+          aria-expanded="false"
+        >
+          View the background of this picture
+        </button>
+
+
+        <div
+          class="background-story"
+          id="background-story"
+          role="dialog"
+          aria-labelledby="background-story-title"
+          hidden
+        >
+          <div class="background-story-panel">
+            <button class="background-story-close" type="button" aria-label="Close">×</button>
+            <h2 id="background-story-title">View the background of this picture</h2>
+
+            <p>
+              The photograph above was taken at a museum in Dalian, China, with classmates I greatly admire.
+            </p>
+            <p>
+              Between 1820 and 1945, Dalian passed through successive periods of Qing rule, brief British military occupation, Russian colonial administration, and Japanese colonial rule.
+            </p>
+            <p>
+              Even after 80 years under CCP governance, illicit advertisements in some of Dalian's less conspicuous corners have been observed soliciting prostitutes with the curious qualification: “Japanese speakers preferred.”
+            </p>
+          </div>
         </div>
       </section>
 
       <section class="introduction wrap">
         <div class="portrait-frame">
+
           <img class="portrait" src="assets/portrait.jpg" alt="Portrait of Jiadian Li" />
         </div>
 
         <article class="welcome">
-          <h2>Welcome</h2>
+          <h2>Jiadian LI <span lang="zh-Hans">(李伽典)</span></h2>
+
 
           <p>
-            My research interests lie in <b style="-webkit-text-stroke: 0.5px black;">applied microeconomics</b> and its interplay with <b style="-webkit-text-stroke: 0.5px black;">political economy</b> and <b style="-webkit-text-stroke: 0.5px black;">economic history</b>. I also explore how cultural factors, such as ideology and linguistics, interact with above contexts.
+            My research interests lie in <b style="-webkit-text-stroke: 0.5px black;">applied microeconometrics</b> and its interplay with <b style="-webkit-text-stroke: 0.5px black;">political economy</b> and <b style="-webkit-text-stroke: 0.5px black;">economic history</b>. I also explore how cultural factors, such as ideology and linguistics, interact with above contexts.
           </p>
           <p>
             My recent work uses Japanese authorities' responses to infectious mortality in colonial Taiwan as a quasi-experiment to investigate relevant institutional consequences.
@@ -62,7 +197,8 @@
 
           <div class="contact-line">
             <span class="contact-label">Contact</span>
-            <a href="mailto:jiadianli2026@u.northwestern.edu">jiadianli2026@u.northwestern.edu</a>
+
+            <a href="mailto:eric.jiadianli@gmail.com">eric.jiadianli@gmail.com</a>
           </div>
         </article>
       </section>
@@ -75,6 +211,56 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+
+    <script>
+      document.querySelectorAll("#year").forEach((element) => {
+        element.textContent = new Date().getFullYear();
+      });
+
+      const storyButton = document.getElementById("background-story-button");
+      const story = document.getElementById("background-story");
+      const storyClose = story?.querySelector(".background-story-close");
+
+      const openStory = () => {
+        if (!story || !storyButton) return;
+        story.hidden = false;
+        storyButton.setAttribute("aria-expanded", "true");
+      };
+
+      const closeStory = () => {
+        if (!story || !storyButton) return;
+        story.hidden = true;
+        storyButton.setAttribute("aria-expanded", "false");
+        storyButton.focus();
+      };
+
+      storyButton?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (story.hidden) {
+          openStory();
+        } else {
+          closeStory();
+        }
+      });
+
+      storyClose?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        closeStory();
+      });
+
+      story?.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+
+      document.addEventListener("click", () => {
+        if (story && !story.hidden) closeStory();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && story && !story.hidden) {
+          closeStory();
+        }
+      });
+    </script>
   </body>
 </html>
