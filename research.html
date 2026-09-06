@@ -9,6 +9,70 @@
     />
     <title>Research — Jiadian LI</title>
     <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      /* Research page only: remove the left index and use the full content width. */
+      .research-layout {
+        display: block;
+        padding-block: 62px 96px;
+      }
+
+      .research-content {
+        width: 100%;
+      }
+
+      .research-section {
+        display: block;
+        width: 100%;
+        padding: 0 0 54px;
+      }
+
+      .research-section + .research-section {
+        padding-top: 46px;
+      }
+
+      .research-section h3 {
+        width: 100%;
+        margin: 0 0 18px;
+      }
+
+      /* Tighter paper cards. */
+      .paper {
+        margin-top: 14px;
+        padding: 20px 28px 21px;
+      }
+
+      .paper + .paper {
+        margin-top: 14px;
+      }
+
+      .paper h4 {
+        margin: 0;
+        line-height: 1.45;
+      }
+
+      .paper-meta {
+        margin: 6px 0 0;
+      }
+
+      @media (max-width: 760px) {
+        .research-layout {
+          padding-block: 42px 72px;
+        }
+
+        .research-section {
+          padding-bottom: 44px;
+        }
+
+        .research-section + .research-section {
+          padding-top: 40px;
+        }
+
+        .paper {
+          padding: 18px 20px 19px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -25,55 +89,51 @@
     </header>
 
     <main>
-      <section class="hero hero-compact" aria-label="Historical documents">
+
+      <section class="hero" aria-label="Research background image">
         <img
-          src="assets/background.jpg"
-          alt="Historical Chinese newspapers and documents displayed under warm museum lighting"
+          src="assets/background2.jpg"
+          alt="Research background image"
         />
         <div class="hero-shade" aria-hidden="true"></div>
+
+        <div class="hero-center-title" aria-hidden="true">
+          <span>Research</span>
+        </div>
       </section>
 
       <div class="research-layout wrap">
-        <aside class="research-index" aria-label="Research page sections">
-          <p>On this page</p>
-          <a href="#working-papers">Working Paper</a>
-          <a href="#work-in-progress">Work in Progress</a>
-        </aside>
-
         <div class="research-content">
-
           <section class="research-section" id="working-papers">
-            <div class="section-number" aria-hidden="true"></div>
             <div>
               <h3>Working Paper</h3>
 
-              <!-- 从这里开始添加 Working Paper。复制一个 article 区块即可增加一篇。 -->
+
               <article class="paper">
                 <h4>Professor Exposure and Elite Military Mobilization: Evidence from WWII China</h4>
                 <p class="paper-meta">with Xianqiang ZOU</p>
               </article>
 
               <article class="paper">
-                <h4>Booking Ideology: State-Controlled Bookstores and the Political Recruitment in Communist China</h4>
+                <h4>Contagion, Concentration, and Commercialization: Health-Induced Markets and Land Distribution in Colonial Taiwan</h4>
                 <p class="paper-meta"></p>
               </article>
 
-              <!-- Working Paper 修改区到这里结束。 -->
+
             </div>
           </section>
 
           <section class="research-section" id="work-in-progress">
-            <div class="section-number" aria-hidden="true"></div>
             <div>
-              <h3>Work in Progress</h3>
+              <h3>Selected Work in Progress</h3>
 
-              <!-- 从这里开始添加 Work in Progress。复制一个 article 区块即可增加一项。 -->
+
               <article class="paper compact-paper">
-                <h4>Contagion, Concentration, and Commercialization</h4>
+                <h4>Booking Ideology: State-Controlled Bookstores and the Political Recruitment in Communist China</h4>
                 <p class="paper-meta"></p>
               </article>
 
-              <!-- Work in Progress 修改区到这里结束。 -->
+
             </div>
           </section>
         </div>
@@ -87,6 +147,10 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+      document.querySelectorAll("#year").forEach((element) => {
+        element.textContent = new Date().getFullYear();
+      });
+    </script>
   </body>
 </html>
